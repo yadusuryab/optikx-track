@@ -428,10 +428,10 @@ export default function TrackingPage() {
               </form>
             </div>
 
-            {/* 24h note */}
+            {/* 48h note */}
             <div className="afu d4" style={{ maxWidth: 480, margin: "0 auto 40px", textAlign: "center" }}>
               <div style={{ fontSize: 10, letterSpacing: "0.12em", color: "var(--stone)", lineHeight: 1.8 }}>
-                ※ Orders appear within 24 hours of confirmation
+                ※ Orders appear within 48 hours of confirmation
               </div>
             </div>
 
@@ -557,7 +557,7 @@ export default function TrackingPage() {
                 <div className="display-font" style={{ fontSize: 48, fontWeight: 300, color: "var(--border)", marginBottom: 14 }}>∅</div>
                 <div className="display-font" style={{ fontSize: 24, fontWeight: 300, marginBottom: 10 }}>No packages found</div>
                 <div style={{ fontSize: 11, letterSpacing: "0.12em", color: "var(--stone)", lineHeight: 2 }}>
-                  Check your name or number · New orders may take 24 hours
+                  Check your name or number · New orders may take 48 hours
                 </div>
                 <button className="btn-ghost" onClick={reset} style={{ marginTop: 24 }}>Try again</button>
               </div>
