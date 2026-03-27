@@ -152,11 +152,11 @@ export default function TrackingPage() {
           background: transparent;
           color: var(--ink);
           font-family: 'Geist Mono', monospace;
-          font-size: 14px;
+          font-size: 16px; 
           letter-spacing: 0.04em;
           min-width: 0;
         }
-        .search-shell.compact input { font-size: 13px; }
+        .search-shell.compact input { font-size: 16px; }
         .search-shell input::placeholder { color: var(--border); }
 
         /* ── Buttons ──────────────────────────────── */
