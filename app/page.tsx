@@ -598,20 +598,53 @@ export default function TrackingPage() {
             </div>
 
             {/* Footer */}
-            <div style={{ padding: "14px 20px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--card)", borderTop: "0.5px solid var(--border)", flexWrap: "wrap", gap: 8 }}>
-              <div style={{ fontSize: 10, color: "var(--stone)", letterSpacing: "0.1em" }}>Tap outside to close</div>
-              <div style={{ display: "flex", gap: 8 }}>
-                <a href="https://www.dtdc.in/tracking.asp" target="_blank" rel="noopener noreferrer" className="btn-ghost" style={{ textDecoration: "none", fontSize: 10, padding: "7px 14px" }}>
-                  Track on DTDC ↗
-                </a>
-                <button className="btn-ghost" style={{ fontSize: 10, padding: "7px 14px" }} onClick={async () => {
-                  try {
-                    if (navigator.share) await navigator.share({ url: selectedImage.url });
-                    else { await navigator.clipboard.writeText(selectedImage.url); }
-                  } catch { /* noop */ }
-                }}>Share</button>
-              </div>
-            </div>
+          {/* Footer */}
+<div style={{ padding: "14px 20px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "var(--card)", borderTop: "0.5px solid var(--border)", flexWrap: "wrap", gap: 8 }}>
+  <div style={{ fontSize: 10, color: "var(--stone)", letterSpacing: "0.1em" }}>
+    {selectedImage.extractedData?.trackingId ? (
+      <>
+        <span style={{ opacity: 0.5 }}>ID · </span>
+        <span style={{ color: "var(--ink)" }}>{selectedImage.extractedData.trackingId}</span>
+        {selectedImage.extractedData?.courier && (
+          <span style={{ opacity: 0.5 }}> · {selectedImage.extractedData.courier}</span>
+        )}
+      </>
+    ) : (
+      "Tap outside to close"
+    )}
+  </div>
+  <div style={{ display: "flex", gap: 8 }}>
+
+    {/* Only render if tracking ID exists */}
+    {selectedImage.extractedData?.trackingId && (
+      <a
+        href={
+          selectedImage.extractedData.trackingUrl ||
+          `https://www.google.com/search?q=${encodeURIComponent(selectedImage.extractedData.trackingId + " tracking")}`
+        }
+        target="_blank"
+        rel="noopener noreferrer"
+        className="btn-ghost"
+        style={{ textDecoration: "none", fontSize: 10, padding: "7px 14px" }}
+      >
+        Track via {selectedImage.extractedData.courier || selectedImage.extractedData.trackingId} ↗
+      </a>
+    )}
+
+    <button
+      className="btn-ghost"
+      style={{ fontSize: 10, padding: "7px 14px" }}
+      onClick={async () => {
+        try {
+          if (navigator.share) await navigator.share({ url: selectedImage.url });
+          else await navigator.clipboard.writeText(selectedImage.url);
+        } catch { /* noop */ }
+      }}
+    >
+      Share
+    </button>
+  </div>
+</div>
           </div>
         </div>
       )}
