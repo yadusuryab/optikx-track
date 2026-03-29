@@ -397,7 +397,7 @@ export default function TrackingPage() {
                 className="afu d2"
                 style={{ fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--stone)", margin: 0 }}
               >
-                Enter your name or phone number
+                Enter your phone number
               </p>
             </div>
 
@@ -411,7 +411,7 @@ export default function TrackingPage() {
                       ref={inputRef}
                       type="text"
                       value={query}
-                      placeholder="e.g. YOUR NAME or 9495314108"
+                      placeholder="YOUR PHONE NUMBER"
                       onChange={e => { setQuery(e.target.value); setFieldError(""); }}
                     />
                   </div>
@@ -532,9 +532,7 @@ export default function TrackingPage() {
                 <div style={{ marginTop: 28, padding: "14px 18px", border: "0.5px solid var(--border)", background: "var(--card)" }}>
                   <div style={{ fontSize: 9, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--stone)", marginBottom: 6 }}>How to track</div>
                   <div style={{ fontSize: 14, color: "var(--ink)", lineHeight: 1.7, fontFamily: "'Cormorant Garamond', serif" }}>
-                    Use the tracking ID near the barcode on your label. Visit{" "}
-                    <a href="https://www.dtdc.in/tracking.asp" target="_blank" rel="noopener noreferrer" style={{ color: "var(--gold)", textDecoration: "none", borderBottom: "1px solid var(--gold)" }}>dtdc.in</a>{" "}
-                    or the courier shown on your package.
+                    Use the tracking ID near the barcode on your label. Visit Offical Website of your Courier Partner and track package.
                   </div>
                 </div>
 
