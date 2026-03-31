@@ -2,6 +2,8 @@
 "use client";
 
 import ContactCard from "@/components/ContactCard";
+import { Button } from "@/components/ui/button";
+import UnboxingPolicyBanner from "@/components/UnboxingPolicy";
 import { useEffect, useState, useRef, Key } from "react";
 
 function Counter({ value }: any) {
@@ -417,14 +419,13 @@ export default function TrackingPage() {
                   </div>
                   {fieldError && <div className="error-msg">{fieldError}</div>}
                 </div>
-                <button
+                <Button
                   type="submit"
-                  className="btn-primary"
                   disabled={loading || !query.trim()}
                   style={{ width: "100%" }}
                 >
                   <span>Track Package</span>
-                </button>
+                </Button>
               </form>
             </div>
 
@@ -436,24 +437,7 @@ export default function TrackingPage() {
             </div>
 
             {/* Warning */}
-            <div className="afu d5" style={{ maxWidth: 480, margin: "0 auto" }}>
-              <div className="warning-banner">
-                <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-                  <span style={{ fontSize: 16, lineHeight: 1, marginTop: 2, flexShrink: 0 }}>⚠</span>
-                  <div>
-                    <div style={{ fontSize: 9, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--gold)", marginBottom: 6, fontFamily: "'Geist Mono', monospace" }}>
-                      Unboxing Policy
-                    </div>
-                    <div style={{ fontSize: 14, lineHeight: 1.7, color: "var(--ink)", fontFamily: "'Cormorant Garamond', serif" }}>
-                      Record a complete <strong>360° video</strong> of your package before opening — all sides, uncut. Required for any return or damage claim.
-                    </div>
-                    <div style={{ fontSize: 10, letterSpacing: "0.1em", color: "var(--stone)", marginTop: 8, fontFamily: "'Geist Mono', monospace" }}>
-                      No video = no return accepted.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <UnboxingPolicyBanner/>
           <div className="my-10">
           <ContactCard/>
           </div>
