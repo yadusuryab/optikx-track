@@ -161,7 +161,7 @@ export default function ContactCard() {
 
         
           <h1 className="text-4xl font-bold tracking-tighter md:text-5xl lg:text-7xl">
-      <em>Contact</em> <AuroraText>OPTIKX</AuroraText>
+OPTIKX
     </h1>
         </div>
 
