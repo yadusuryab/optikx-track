@@ -3,6 +3,7 @@
 
 import ContactCard from "@/components/ContactCard";
 import { FixedSearchBar } from "@/components/tracking/FixedSearchBar";
+import { Hero } from "@/components/tracking/Hero";
 import { TrackingNote } from "@/components/tracking/TrackingNote";
 import { WarningBanner } from "@/components/tracking/WarningBanner";
 import { Button } from "@/components/ui/button";
@@ -372,21 +373,7 @@ export default function TrackingPage() {
         {!searched && (
           <>
             {/* Hero text */}
-            <div style={{ textAlign: "center", marginBottom: 56 }}>
-            <h1 className="text-5xl leading-none font-semibold tracking-tighter text-balance sm:text-6xl md:text-7xl lg:text-8xl">
-            Where is your
-            <LineShadowText className="italic" shadowColor={shadowColor}>
-              Order?
-            </LineShadowText>
-          </h1>
-              <p
-                className="afu d2"
-                style={{ fontSize: 11, letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--stone)", margin: 0 }}
-              >
-                Enter your phone number
-              </p>
-            </div>
-
+       <Hero/>
             {/* Hero search bar */}
             <div className="afu d3 search-bar-hero" style={{ marginBottom: 16 }}>
               <form onSubmit={handleSubmit}>

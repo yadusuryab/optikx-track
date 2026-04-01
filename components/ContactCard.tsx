@@ -90,7 +90,6 @@ function Row({ href, icon, label, value, accent = false, isExternal = false }:an
           letterSpacing: "0.18em",
           textTransform: "uppercase",
           marginBottom: 3,
-          fontFamily: "'Geist Mono', monospace",
         }} className="text-muted-foreground">
           {label}
         </div>
@@ -100,7 +99,6 @@ function Row({ href, icon, label, value, accent = false, isExternal = false }:an
           whiteSpace: "nowrap",
           overflow: "hidden",
           textOverflow: "ellipsis",
-          fontFamily: "'Geist Mono', monospace",
         }} className="text-foreground">
           {value}
         </div>
