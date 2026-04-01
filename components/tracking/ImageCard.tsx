@@ -1,33 +1,75 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { Card } from "@/components/ui/card";
+import { useState } from "react";
 
-export function ImageCard({ image, onClick }: { image: any, onClick: () => void }) {
+interface ImageCardProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  image: any;
+  index: number;
+  onClick: () => void;
+}
+
+export function ImageCard({ image, index, onClick }: ImageCardProps) {
+  const [hasError, setHasError] = useState(false);
+  
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.2 }}
+    <div
+      className="card-img afu"
+      style={{ animationDelay: `${index * 0.05}s`, opacity: 0 }}
+      onClick={onClick}
     >
-      <Card 
-        className="group relative aspect-[3/4] overflow-hidden rounded-2xl border-none shadow-sm hover:shadow-xl transition-all cursor-pointer"
-        onClick={onClick}
-      >
-        <Image
-          src={image.url}
-          alt="Package"
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-          <p className="text-white text-sm font-medium tracking-tight">
-            {image.extractedData?.name || "View Details"}
-          </p>
+      {hasError ? (
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "var(--cream)",
+            color: "var(--stone)",
+            fontSize: 10,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase"
+          }}
+        >
+          Unavailable
         </div>
-      </Card>
-    </motion.div>
+      ) : (
+        <>
+          <img
+            src={image.url}
+            alt={image.title || "Shipment"}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              display: "block"
+            }}
+            onError={() => setHasError(true)}
+            loading="lazy"
+          />
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              background: "linear-gradient(transparent,rgba(0,0,0,0.55))",
+              padding: "18px 12px 10px"
+            }}
+          >
+            <div
+              style={{
+                fontSize: 9,
+                letterSpacing: "0.12em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.7)"
+              }}
+            >
+              Tap to view
+            </div>
+          </div>
+        </>
+      )}
+    </div>
   );
 }

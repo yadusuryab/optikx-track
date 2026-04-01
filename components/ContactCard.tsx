@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import Link from "next/link";
+import { AuroraText } from "./ui/aurora-text";
+
 // ─────────────────────────────────────────────────────────────
 //  ContactCard.jsx
 //  Drop anywhere in your homepage. Update CONTACT below.
@@ -52,7 +55,7 @@ const ArrowIcon = () => (
 // ─── Row ──────────────────────────────────────────────────────
 function Row({ href, icon, label, value, accent = false, isExternal = false }:any) {
   return (
-    <a
+    <Link
       href={href}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
@@ -60,12 +63,11 @@ function Row({ href, icon, label, value, accent = false, isExternal = false }:an
         display: "flex",
         alignItems: "center",
         gap: 16,
-        padding: "14px 28px",
         textDecoration: "none",
         transition: "background 0.15s",
         cursor: "pointer",
       }}
-      className="border-b hover:bg-primary/50"
+      className="bg-secondary/50 mx-2 px-3 py-4 mb-1 rounded-md hover:bg-primary/50"
   
     >
       {/* Icon circle */}
@@ -108,7 +110,7 @@ function Row({ href, icon, label, value, accent = false, isExternal = false }:an
       <div style={{ opacity: 0.3, color: "var(--color-text-primary, #1a1714)", flexShrink: 0 }}>
         <ArrowIcon />
       </div>
-    </a>
+    </Link>
   );
 }
 
@@ -133,19 +135,14 @@ function SectionLabel({ children }:any) {
 export default function ContactCard() {
   return (
     <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Geist+Mono:wght@300;400&display=swap');
-        .cc-row-last { border-bottom: none !important; }
-      `}</style>
-
+   
       <div style={{
         borderRadius: 12,
         overflow: "hidden",
         width: "100%",
         maxWidth: 420,
-        fontFamily: "'Geist Mono', monospace",
         
-      }} className="bg-secondary border">
+      }} className="bg-background/50 backdrop-blur-2xl saturate-200 border">
 
         {/* ── Header ────────────────────────────────────────── */}
         <div style={{
@@ -153,12 +150,7 @@ export default function ContactCard() {
           position: "relative",
         }} className="border-b">
           {/* Gold accent bar */}
-          <div style={{
-            position: "absolute",
-            top: 0, left: 0, right: 0,
-            height: 2,
-            background: "#fff",
-          }} />
+         
 
           <div style={{
             fontSize: 9,
@@ -169,24 +161,10 @@ export default function ContactCard() {
             Contact
           </div>
 
-          <div style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            fontSize: 30,
-            fontWeight: 300,
-            lineHeight: 1.1,
-            marginBottom: 4,
-          }} className="text-foreground">
-            {CONTACT.brandName}
-          </div>
-
-          <div style={{
-            fontSize: 10,
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-            color: "var(--color-text-secondary, #8c8680)",
-          }}>
-            {CONTACT.brandSub}
-          </div>
+        
+          <h1 className="text-4xl font-bold tracking-tighter md:text-5xl lg:text-7xl">
+      <em>Contact</em> <AuroraText>OPTIKX</AuroraText>
+    </h1>
         </div>
 
         {/* ── Body ──────────────────────────────────────────── */}
