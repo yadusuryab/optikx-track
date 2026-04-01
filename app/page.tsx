@@ -2,6 +2,9 @@
 "use client";
 
 import ContactCard from "@/components/ContactCard";
+import { FixedSearchBar } from "@/components/tracking/FixedSearchBar";
+import { TrackingNote } from "@/components/tracking/TrackingNote";
+import { WarningBanner } from "@/components/tracking/WarningBanner";
 import { Button } from "@/components/ui/button";
 import { LineShadowText } from "@/components/ui/line-shadow-text";
 import UnboxingPolicyBanner from "@/components/UnboxingPolicy";
@@ -34,7 +37,7 @@ export default function TrackingPage() {
   const [imageErrors, setImageErrors] = useState<Set<any>>(new Set());
   const [mounted, setMounted] = useState(false);
   const [fieldError, setFieldError] = useState("");
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<any>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -353,30 +356,7 @@ export default function TrackingPage() {
 
       {/* ── Fixed search bar (post-search) ───────── */}
       {searched && (
-        <div className="search-bar-fixed bg-background/75 saturate-200 backdrop-blur-2xl">
-          <form className="search-bar-fixed-inner" onSubmit={handleSubmit}>
-            <div className="search-shell compact">
-              <label>Track</label>
-              <input
-                ref={inputRef}
-                type="text"
-                value={query}
-                placeholder="Name or phone number"
-                onChange={e => { setQuery(e.target.value); setFieldError(""); }}
-              />
-            </div>
-            <button
-              type="submit"
-              className="btn-primary compact"
-              disabled={loading || !query.trim()}
-            >
-              <span>{loading ? "…" : "Search"}</span>
-            </button>
-            <button type="button" className="btn-ghost" onClick={reset} title="Clear">
-              ✕
-            </button>
-          </form>
-        </div>
+       <FixedSearchBar onSubmit={handleSubmit} onReset={reset} query={query} setQuery={setQuery} loading={false} inputRef={inputRef}/>
       )}
 
       {/* ── Main ─────────────────────────────────── */}
@@ -453,14 +433,7 @@ export default function TrackingPage() {
           <div>
 
             {/* Warning above results */}
-            <div className="warning-banner" style={{ marginBottom: 32, animation: "slideDown 0.35s ease" }}>
-              <div style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
-                <span style={{ fontSize: 16, lineHeight: 1, marginTop: 2, flexShrink: 0 }}>⚠</span>
-                <div style={{ fontSize: 13, lineHeight: 1.7, color: "var(--ink)", fontFamily: "'Cormorant Garamond', serif" }}>
-                  Record a <strong>360° video</strong> before unboxing — required for all returns &amp; damage claims.
-                </div>
-              </div>
-            </div>
+           <WarningBanner/>
 
             {/* Loading skeletons */}
             {loading && (
@@ -517,12 +490,7 @@ export default function TrackingPage() {
                 </div>
 
                 {/* Tracking note */}
-                <div style={{ marginTop: 28, padding: "14px 18px", border: "0.5px solid var(--border)", background: "var(--card)" }}>
-                  <div style={{ fontSize: 9, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--stone)", marginBottom: 6 }}>How to track</div>
-                  <div style={{ fontSize: 14, color: "var(--ink)", lineHeight: 1.7, fontFamily: "'Cormorant Garamond', serif" }}>
-                    Use the tracking ID near the barcode on your label. Visit Offical Website of your Courier Partner and track package.
-                  </div>
-                </div>
+                <TrackingNote/>
 
                 {/* Pagination */}
                 {pagination && pagination.pages > 1 && (
@@ -572,11 +540,7 @@ export default function TrackingPage() {
             </div>
 
             {/* Warning */}
-            <div style={{ padding: "10px 20px", background: "rgba(201,169,110,0.06)", borderBottom: "0.5px solid var(--border)" }}>
-              <div style={{ fontSize: 13, color: "var(--ink)", fontFamily: "'Cormorant Garamond', serif", lineHeight: 1.6 }}>
-                ⚠ Record a <strong>360° unboxing video</strong> before opening. Required for all returns.
-              </div>
-            </div>
+          <WarningBanner/>
 
             {/* Image */}
             <div style={{ background: "#0a0a0a", display: "flex", alignItems: "center", justifyContent: "center", minHeight: 340, maxHeight: "60vh", overflow: "hidden" }}>
